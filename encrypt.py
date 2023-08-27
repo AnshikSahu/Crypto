@@ -7,7 +7,7 @@ from Crypto.Cipher import AES
 import random
 
 key = b'\xb8\x15\xd4\xeeUO\xdf\xa3\x02\xe9\x8d.\xb2\x10\xfa\x0c'
-secret = "abcpqrxyzvcxsdwproidmuwm"
+secret = "abcpqrxyzvabcdwproidmuwm"
 
 def compress_func(inp):
     return zlib.compress(inp.encode())
@@ -20,7 +20,3 @@ def encrypt(message):
     aes = AES.new(key, AES.MODE_CFB, iv=iv)
     encd = aes.encrypt(compa)
     return list(iv + encd)
-
-for i in range(0,25):
-    e=encrypt(chr(i+97))
-    print(e,len(e))

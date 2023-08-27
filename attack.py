@@ -12,4 +12,14 @@ def attack():
     """
     Return the secret
     """
-    return ""
+    found=''
+    d={}
+    for i in range(24):
+        for ch in range(97,123):
+            e=encrypt(found+chr(ch)+" "*(23-i))
+            d[ch]=len(e)
+        c=min(d.keys(),key= lambda x: d[x])
+        found+=chr(c)
+    return found
+
+print(attack())
