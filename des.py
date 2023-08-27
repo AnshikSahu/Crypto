@@ -27,5 +27,3 @@ def decrypt(key, ct):
     """Decrypt using single-round DES"""
     cipher = DES.new(key, DES.MODE_ECB)
     return cipher.decrypt(ct)
-
-print(key_gen(0))
