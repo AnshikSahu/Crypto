@@ -12,18 +12,18 @@ def attack(message, ciphertext):
     """
     Return the keys (k1, k2) such that ct = Enc(Enc(m, k1), k2) [ordering of keys matter]
     """
-    key=[]
-    txt=[]
+    txt1={}
+    txt2={}
     for i in range(2**20):
-        key.append(key_gen(i))
-        e=encrypt(key[i],message)
+        key=key_gen(i)
+        e=encrypt(key,message)
         try:
-            return (key[i],key[txt.index(e)//2])
+            return (key,txt1[e])
         except:
-            txt.append(e)
-        d=decrypt(key[i],ciphertext)
+            txt2[e]=key
+        d=decrypt(key,ciphertext)
         try:
-            return (key[txt.index(d)//2],key[i])
+            return (txt2[d],key)
         except:
-            txt.append(d)
+            txt1[d]=key
     return None
